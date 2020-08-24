@@ -1,18 +1,19 @@
 package com.horia.reminderapi.service;
 
 import com.horia.reminderapi.model.Reminder;
+import com.horia.reminderapi.model.response.ApiResponse;
 
 import java.util.List;
 
 public interface ReminderApiService {
 
-    Reminder createReminder(Reminder reminder);
+    ApiResponse<?> createReminder(Reminder reminder);
 
-    Reminder updateReminder(long id, Reminder reminder);
+    ApiResponse<?> updateReminder(long id, Reminder reminder);
 
-    List<Reminder> getAllReminders();
+    ApiResponse<?> getAllReminders();
 
-    Reminder getReminderById(long reminderId);
+    ApiResponse<?> getReminderById(long reminderId);
 
-    Reminder deleteReminder(long id);
+    ApiResponse<?> deleteReminder(long id);
 }

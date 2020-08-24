@@ -1,6 +1,7 @@
 package com.horia.reminderapi.exceptions;
 
-import com.horia.reminderapi.model.response.ErrorMessage;
+import com.horia.reminderapi.model.response.ApiResponse;
+import com.horia.reminderapi.model.ErrorMessage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import java.util.Date;
 
 @ControllerAdvice
 public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -40,7 +39,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, localizedErrorMessage);
 
+        ApiResponse<ErrorMessage> apiResponse = new ApiResponse<>(errorMessage, false,
+                localizedErrorMessage, HttpStatus.BAD_REQUEST);
+
         return new ResponseEntity<>(
-                errorMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+                apiResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 }

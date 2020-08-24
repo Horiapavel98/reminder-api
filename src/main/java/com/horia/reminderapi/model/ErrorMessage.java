@@ -1,4 +1,4 @@
-package com.horia.reminderapi.model.response;
+package com.horia.reminderapi.model;
 
 import org.springframework.http.HttpStatus;
 

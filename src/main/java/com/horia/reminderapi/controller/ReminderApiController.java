@@ -2,6 +2,7 @@ package com.horia.reminderapi.controller;
 
 import com.horia.reminderapi.exceptions.ResourceNotFoundException;
 import com.horia.reminderapi.model.Reminder;
+import com.horia.reminderapi.model.response.ApiResponse;
 import com.horia.reminderapi.service.ReminderApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class ReminderApiController {
     private ReminderApiService reminderService;
 
     @GetMapping("/reminders")
-    public ResponseEntity<List<Reminder>> getAllReminders() {
+    public ResponseEntity<ApiResponse> getAllReminders() {
         return ResponseEntity.ok().body(reminderService.getAllReminders());
     }
 
@@ -26,7 +27,7 @@ public class ReminderApiController {
     }
 
     @PostMapping("/reminders")
-    public ResponseEntity<Reminder> createReminder(@RequestBody Reminder reminder) {
+    public ResponseEntity<ApiResponse> createReminder(@RequestBody Reminder reminder) {
         return ResponseEntity.ok().body(this.reminderService.createReminder(reminder));
     }
 
