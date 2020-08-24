@@ -4,7 +4,7 @@ import com.horia.reminderapi.model.Reminder;
 
 import java.util.List;
 
-public interface ReminderService {
+public interface ReminderApiService {
 
     Reminder createReminder(Reminder reminder);
 

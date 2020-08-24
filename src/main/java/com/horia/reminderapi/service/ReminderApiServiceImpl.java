@@ -2,7 +2,7 @@ package com.horia.reminderapi.service;
 
 import com.horia.reminderapi.exceptions.ResourceNotFoundException;
 import com.horia.reminderapi.model.Reminder;
-import com.horia.reminderapi.repository.ReminderRepository;
+import com.horia.reminderapi.repository.ReminderApiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,10 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class ReminderServiceImpl implements ReminderService {
+public class ReminderApiServiceImpl implements ReminderApiService {
 
     @Autowired
-    private ReminderRepository reminderRepository;
+    private ReminderApiRepository reminderRepository;
 
     @Override
     public Reminder createReminder(Reminder reminder) {
@@ -23,7 +23,7 @@ public class ReminderServiceImpl implements ReminderService {
     }
 
     @Override
-    public Reminder updateReminder(long id, Reminder reminder) {
+    public Reminder updateReminder(long id, Reminder reminder) throws ResourceNotFoundException {
         Optional<Reminder> optionalReminder = this.reminderRepository.findById(id);
         if (optionalReminder.isPresent()) {
             Reminder reminderOld = optionalReminder.get();
@@ -45,7 +45,7 @@ public class ReminderServiceImpl implements ReminderService {
     }
 
     @Override
-    public Reminder getReminderById(long reminderId) {
+    public Reminder getReminderById(long reminderId) throws ResourceNotFoundException {
         Optional<Reminder> optionalReminder = this.reminderRepository.findById(reminderId);
 
         if (optionalReminder.isPresent()) {
@@ -56,7 +56,7 @@ public class ReminderServiceImpl implements ReminderService {
     }
 
     @Override
-    public Reminder deleteReminder(long id) {
+    public Reminder deleteReminder(long id) throws ResourceNotFoundException {
         Optional<Reminder> optionalReminder = this.reminderRepository.findById(id);
 
         if (optionalReminder.isPresent()) {
