@@ -1,30 +1,34 @@
-package com.horia.reminderapi;
+package com.horia.reminderapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
+@Table(name = "reminders")
 public class Reminder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
     private String description;
 
-    private String dueTime;
+    @Column(name = "due_date")
+    private Date dueDate;
 
-    public Reminder() {}
+    public Reminder() {
 
-    public Reminder(Long id, String name, String description, String dueTime) {
+    }
+
+    public Reminder(Long id, String name, String description, Date dueDate) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.dueTime = dueTime;
+        this.dueDate = dueDate;
     }
 
     public Long getId() {
@@ -51,11 +55,11 @@ public class Reminder {
         this.description = description;
     }
 
-    public String getDueTime() {
-        return dueTime;
+    public Date getDueDate() {
+        return dueDate;
     }
 
-    public void setDueTime(String dueTime) {
-        this.dueTime = dueTime;
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 }
