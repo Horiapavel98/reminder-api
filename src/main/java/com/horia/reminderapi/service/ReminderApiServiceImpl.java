@@ -4,6 +4,8 @@ import com.horia.reminderapi.exceptions.ResourceNotFoundException;
 import com.horia.reminderapi.model.Reminder;
 import com.horia.reminderapi.model.response.ApiResponse;
 import com.horia.reminderapi.repository.ReminderApiRepository;
+import com.horia.reminderapi.sms.SleepingReminder;
+import com.horia.reminderapi.sms.SmsMessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,10 @@ public class ReminderApiServiceImpl implements ReminderApiService {
 
     @Override
     public ApiResponse<?> createReminder(Reminder reminder) {
+        Thread reminderThread = new Thread(new SleepingReminder(reminder));
+        reminderThread.start();
+        // Name that thread for making it killable
+        // reminderThread.setName(reminder.getId().toString());
         return new ApiResponse<>(reminderRepository.save(reminder), true,
                 "Reminder created successfully", HttpStatus.OK);
     }
