@@ -21,13 +21,19 @@ public class ReminderApiServiceImpl implements ReminderApiService {
     @Autowired
     private ReminderApiRepository reminderRepository;
 
+    private ThreadManager threadManager = new ThreadManager();
+
     @Override
     public ApiResponse<?> createReminder(Reminder reminder) {
-        Thread reminderThread = new Thread(new SleepingReminder(reminder));
-        reminderThread.start();
-        // Name that thread for making it killable
-        // reminderThread.setName(reminder.getId().toString());
-        return new ApiResponse<>(reminderRepository.save(reminder), true,
+        Reminder reminderToSubmit = reminderRepository.save(reminder);
+
+        System.out.println(reminderToSubmit.getId());
+
+        SleepingReminder sleepingReminder = new SleepingReminder(reminderToSubmit);
+
+        threadManager.addOrUpdateThread(reminderToSubmit.getId(), sleepingReminder);
+
+        return new ApiResponse<>(reminderToSubmit, true,
                 "Reminder created successfully", HttpStatus.OK);
     }
 
@@ -42,7 +48,13 @@ public class ReminderApiServiceImpl implements ReminderApiService {
             reminderOld.setDescription(reminder.getDescription());
             reminderOld.setDueDate(reminder.getDueDate());
 
-            return new ApiResponse<>(reminder, true,
+            SleepingReminder sleepingReminder = new SleepingReminder(reminderOld);
+
+            threadManager.terminateThread(id);
+
+            threadManager.addOrUpdateThread(id, sleepingReminder);
+
+            return new ApiResponse<>(reminderOld, true,
                     "Reminder updated successfully", HttpStatus.OK);
         } else {
             throw new ResourceNotFoundException("Record with id=" + id + " not found");
@@ -81,6 +93,9 @@ public class ReminderApiServiceImpl implements ReminderApiService {
 
         if (optionalReminder.isPresent()) {
             Reminder reminderToReturn = optionalReminder.get();
+
+            threadManager.terminateThread(reminderToReturn.getId());
+
             this.reminderRepository.delete(optionalReminder.get());
             return new ApiResponse<>(reminderToReturn, true,
                     "Reminder deleted successfully", HttpStatus.OK);

@@ -4,6 +4,8 @@ import com.horia.reminderapi.model.Reminder;
 
 public class SleepingReminder implements Runnable {
 
+    private boolean shouldTerminate = false;
+
     private Reminder reminder;
 
     public SleepingReminder(Reminder reminder) {
@@ -25,6 +27,14 @@ public class SleepingReminder implements Runnable {
         return reminder.getDueDate().getTime();
     }
 
+    public void setShouldTerminate(boolean shouldTerminate) {
+        this.shouldTerminate = shouldTerminate;
+    }
+
+    public Reminder getReminder() {
+        return reminder;
+    }
+
     @Override
     public void run() {
         long dueTime = getReminderDueTime();
@@ -33,6 +43,12 @@ public class SleepingReminder implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        release();
+
+        if (!shouldTerminate) {
+            release();
+            System.out.println("Thread from " + this.getClass() + " exited successfully: reminder.id=" + reminder.getId());
+        } else {
+            System.out.println("Thread from " + this.getClass() + " exited");
+        }
     }
 }
