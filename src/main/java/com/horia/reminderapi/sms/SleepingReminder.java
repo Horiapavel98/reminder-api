@@ -20,7 +20,7 @@ public class SleepingReminder implements Runnable {
         stringBuilder.append(". Description: ");
         stringBuilder.append(reminder.getDescription());
 
-        new SmsMessageSender().sendMessage("+40735211261", stringBuilder.toString());
+        new SmsMessageSender().sendMessage(reminder.getReceiverPhoneNumber(), stringBuilder.toString());
     }
 
     private long getReminderDueTime() {

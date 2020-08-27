@@ -20,15 +20,19 @@ public class Reminder {
     @Column(name = "due_date")
     private Date dueDate;
 
+    @Column(name = "receiver")
+    private String receiverPhoneNumber;
+
     public Reminder() {
 
     }
 
-    public Reminder(Long id, String name, String description, Date dueDate) {
+    public Reminder(Long id, String name, String description, Date dueDate, String receiverPhoneNumber) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
+        this.receiverPhoneNumber = receiverPhoneNumber;
     }
 
     public Long getId() {
@@ -61,5 +65,13 @@ public class Reminder {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public String getReceiverPhoneNumber() {
+        return receiverPhoneNumber;
+    }
+
+    public void setReceiverPhoneNumber(String receiverPhoneNumber) {
+        this.receiverPhoneNumber = receiverPhoneNumber;
     }
 }

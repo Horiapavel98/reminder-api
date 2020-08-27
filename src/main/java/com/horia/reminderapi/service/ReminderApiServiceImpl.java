@@ -5,7 +5,6 @@ import com.horia.reminderapi.model.Reminder;
 import com.horia.reminderapi.model.response.ApiResponse;
 import com.horia.reminderapi.repository.ReminderApiRepository;
 import com.horia.reminderapi.sms.SleepingReminder;
-import com.horia.reminderapi.sms.SmsMessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -47,6 +46,7 @@ public class ReminderApiServiceImpl implements ReminderApiService {
             reminderOld.setName(reminder.getName());
             reminderOld.setDescription(reminder.getDescription());
             reminderOld.setDueDate(reminder.getDueDate());
+            reminderOld.setReceiverPhoneNumber(reminder.getReceiverPhoneNumber());
 
             SleepingReminder sleepingReminder = new SleepingReminder(reminderOld);
 
