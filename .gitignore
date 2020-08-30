@@ -34,3 +34,7 @@ build/
 
 ### DB files ###
 *.db
+
+### Releases ###
+pom.xml.releaseBackup
+release.properties
