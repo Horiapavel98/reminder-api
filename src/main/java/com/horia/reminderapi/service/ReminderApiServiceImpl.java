@@ -5,11 +5,13 @@ import com.horia.reminderapi.model.Reminder;
 import com.horia.reminderapi.model.response.ApiResponse;
 import com.horia.reminderapi.repository.ReminderApiRepository;
 import com.horia.reminderapi.sms.SleepingReminder;
+import com.horia.reminderapi.time.FutureTimeManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,9 @@ public class ReminderApiServiceImpl implements ReminderApiService {
 
     @Override
     public ApiResponse<?> createReminder(Reminder reminder) {
+        if (reminder.getDueDate() == null) {
+            reminder.setDueDate(FutureTimeManager.getFutureIncrementedBySeconds(5));
+        }
         Reminder reminderToSubmit = reminderRepository.save(reminder);
 
         System.out.println(reminderToSubmit.getId());
