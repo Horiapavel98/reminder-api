@@ -1,6 +1,5 @@
 package com.horia.reminderapi;
 
-import com.horia.reminderapi.sms.SmsMessageSender;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

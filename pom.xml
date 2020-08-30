@@ -2,19 +2,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.horia</groupId>
 	<artifactId>reminder-api</artifactId>
-	<version>1.1</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>reminder-api</name>
 	<description>Reminder API: Send requests to be reminded on your phone</description>
 
 	<packaging>jar</packaging>
+
+	<scm>
+		<connection>scm:git:git@github.com:Horiapavel98/reminder-api.git</connection>
+		<developerConnection>scm:git:git@github.com:Horiapavel98/reminder-api.git</developerConnection>
+		<url>https://github.com/Horiapavel98/reminder-api</url>
+		<tag>@{project.version}</tag>
+	</scm>
 
 	<properties>
 		<java.version>14</java.version>
@@ -62,15 +71,45 @@
 			<version>7.55.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-model</artifactId>
+			<version>3.6.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-release-plugin</artifactId>
+			<version>2.5.3</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
+		<!-- Resources -->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>build-info</id>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
+
+		<!-- Resources -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
 	</build>
 
 </project>
