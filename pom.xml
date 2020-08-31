@@ -24,6 +24,14 @@
 		<tag>@{project.version}</tag>
 	</scm>
 
+	<distributionManagement>
+		<repository>
+			<id>myRepoId</id>
+			<name>myCompanyReporsitory</name>
+			<url>file://C:/Users/horia/Desktop/reminder-api\out\</url>
+		</repository>
+	</distributionManagement>
+
 	<properties>
 		<java.version>14</java.version>
 	</properties>
@@ -75,7 +83,7 @@
 			<artifactId>maven-model</artifactId>
 			<version>3.6.3</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
