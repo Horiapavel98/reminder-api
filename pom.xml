@@ -26,9 +26,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>myRepoId</id>
-			<name>myCompanyReporsitory</name>
-			<url>file://C:/Users/horia/Desktop/reminder-api\out\</url>
+			<id>devRepo</id>
+			<name>horiaRepo</name>
+			<url>file://C:/Users/horia/Desktop/reminder-api/out/</url>
 		</repository>
 	</distributionManagement>
 
