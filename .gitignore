@@ -38,3 +38,4 @@ build/
 ### Releases ###
 pom.xml.releaseBackup
 release.properties
+out/**
