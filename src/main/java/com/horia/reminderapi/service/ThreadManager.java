@@ -2,10 +2,12 @@ package com.horia.reminderapi.service;
 
 import com.horia.reminderapi.exceptions.ThreadNotFoundException;
 import com.horia.reminderapi.sms.SleepingReminder;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class ThreadManager {
 
     private Map<Long, SleepingReminder> threads;
