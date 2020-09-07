@@ -6,6 +6,7 @@ import com.horia.reminderapi.exceptions.ResourceNotFoundException;
 import com.horia.reminderapi.model.Responsible;
 import com.horia.reminderapi.model.response.ApiResponse;
 import com.horia.reminderapi.service.IUserService;
+import com.twilio.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,16 +27,14 @@ import javax.validation.Valid;
 
 @RestController
 @Validated
-public class UserRegistrationController {
+public class UserController {
 
     @Autowired
     private IUserService userService;
 
-    @GetMapping("/user/registration")
-    public String showRegistrationForm(WebRequest webRequest, Model model) {
-        UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
-        return "registration";
+    @GetMapping("/user/{id}")
+    public ResponseEntity<ApiResponse> getUserById(@PathVariable long id) {
+        return ResponseEntity.ok().body(userService.getUserById(id));
     }
 
     @PostMapping("user/registration")

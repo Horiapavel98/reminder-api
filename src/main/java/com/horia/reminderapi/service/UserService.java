@@ -41,18 +41,16 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public ApiResponse<? extends Responsible> updateUser(long id, UserDto userDto) {
-        return null;
-    }
-
-    @Override
-    public ApiResponse<? extends Responsible> getAllUsers() {
-        return null;
-    }
-
-    @Override
     public ApiResponse<? extends Responsible> getUserById(long id) throws ResourceNotFoundException {
-        return null;
+        Optional<User> userOptional = repository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User userToReturn = userOptional.get();
+            return new ApiResponse<>(userToReturn, true,
+                    "User retrieved successfully", HttpStatus.OK);
+        } else {
+            throw new ResourceNotFoundException("User with id=" + id + " not found");
+        }
     }
 
     @Override

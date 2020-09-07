@@ -13,10 +13,6 @@ public interface IUserService {
 
     ApiResponse<? extends Responsible> registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException;
 
-    ApiResponse<? extends Responsible> updateUser(long id, UserDto userDto);
-
-    ApiResponse<? extends Responsible> getAllUsers();
-
     ApiResponse<? extends Responsible> getUserById(long id) throws ResourceNotFoundException;
 
     ApiResponse<? extends Responsible> deleteUser(long id) throws ResourceNotFoundException;
