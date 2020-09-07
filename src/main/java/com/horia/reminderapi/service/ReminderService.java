@@ -2,9 +2,11 @@ package com.horia.reminderapi.service;
 
 import com.horia.reminderapi.exceptions.ResourceNotFoundException;
 import com.horia.reminderapi.model.Reminder;
+import com.horia.reminderapi.model.Responsible;
 import com.horia.reminderapi.model.response.ApiResponse;
 import com.horia.reminderapi.repository.ReminderRepository;
 import com.horia.reminderapi.sms.SleepingReminder;
+import com.horia.reminderapi.sms.ThreadManager;
 import com.horia.reminderapi.time.FutureTimeManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +23,10 @@ public class ReminderService implements IReminderService {
     @Autowired
     private ReminderRepository reminderRepository;
 
-    private ThreadManager threadManager = new ThreadManager();
+    private final ThreadManager threadManager = new ThreadManager();
 
     @Override
-    public ApiResponse<?> createReminder(Reminder reminder) {
+    public ApiResponse<? extends Responsible> createReminder(Reminder reminder) {
         if (reminder.getDueDate() == null) {
             reminder.setDueDate(FutureTimeManager.getFutureIncrementedBySeconds(5));
         }
@@ -41,7 +43,7 @@ public class ReminderService implements IReminderService {
     }
 
     @Override
-    public ApiResponse<?> updateReminder(long id, Reminder reminder) throws ResourceNotFoundException {
+    public ApiResponse<? extends Responsible> updateReminder(long id, Reminder reminder) throws ResourceNotFoundException {
         Optional<Reminder> optionalReminder = this.reminderRepository.findById(id);
         if (optionalReminder.isPresent()) {
             Reminder reminderOld = optionalReminder.get();
@@ -66,7 +68,7 @@ public class ReminderService implements IReminderService {
     }
 
     @Override
-    public ApiResponse<?> getAllReminders() {
+    public ApiResponse<List<? extends Responsible>> getAllReminders() {
         List<Reminder> reminders = this.reminderRepository.findAll();
 
         if (reminders.isEmpty()) {
@@ -79,7 +81,7 @@ public class ReminderService implements IReminderService {
     }
 
     @Override
-    public ApiResponse<?> getReminderById(long reminderId) throws ResourceNotFoundException {
+    public ApiResponse<? extends Responsible> getReminderById(long reminderId) throws ResourceNotFoundException {
         Optional<Reminder> optionalReminder = this.reminderRepository.findById(reminderId);
 
         if (optionalReminder.isPresent()) {
@@ -92,7 +94,7 @@ public class ReminderService implements IReminderService {
     }
 
     @Override
-    public ApiResponse<?> deleteReminder(long id) throws ResourceNotFoundException {
+    public ApiResponse<? extends Responsible> deleteReminder(long id) throws ResourceNotFoundException {
         Optional<Reminder> optionalReminder = this.reminderRepository.findById(id);
 
         if (optionalReminder.isPresent()) {

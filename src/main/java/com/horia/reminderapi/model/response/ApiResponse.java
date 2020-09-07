@@ -1,6 +1,8 @@
 package com.horia.reminderapi.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.horia.reminderapi.model.Responsible;
+import com.horia.reminderapi.service.ReminderService;
 import org.springframework.http.HttpStatus;
 
 public class ApiResponse<T> {

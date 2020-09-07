@@ -1,5 +1,8 @@
 package com.horia.reminderapi.client;
 
+import com.horia.reminderapi.model.Responsible;
+import net.bytebuddy.agent.builder.ResettableClassFileTransformer;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +13,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Responsible {
 
     @Id
     @Column(unique = true, nullable = false)

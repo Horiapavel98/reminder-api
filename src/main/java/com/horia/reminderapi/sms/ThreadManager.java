@@ -1,4 +1,4 @@
-package com.horia.reminderapi.service;
+package com.horia.reminderapi.sms;
 
 import com.horia.reminderapi.exceptions.ThreadNotFoundException;
 import com.horia.reminderapi.sms.SleepingReminder;

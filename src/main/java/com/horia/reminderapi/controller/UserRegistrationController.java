@@ -2,6 +2,8 @@ package com.horia.reminderapi.controller;
 
 import com.horia.reminderapi.client.User;
 import com.horia.reminderapi.client.UserDto;
+import com.horia.reminderapi.exceptions.ResourceNotFoundException;
+import com.horia.reminderapi.model.Responsible;
 import com.horia.reminderapi.model.response.ApiResponse;
 import com.horia.reminderapi.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,7 +46,11 @@ public class UserRegistrationController {
             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         }
 
-        final User userRegistered = userService.registerNewUserAccount(accountDto);
-        return ResponseEntity.ok().body("Account created successfully");
+        return ResponseEntity.ok().body(userService.registerNewUserAccount(accountDto));
+    }
+
+    @DeleteMapping("user/deletion/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable long id) throws ResourceNotFoundException {
+        return ResponseEntity.ok().body(this.userService.deleteUser(id));
     }
 }

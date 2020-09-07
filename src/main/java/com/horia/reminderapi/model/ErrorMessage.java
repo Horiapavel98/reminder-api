@@ -2,7 +2,7 @@ package com.horia.reminderapi.model;
 
 import org.springframework.http.HttpStatus;
 
-public class ErrorMessage {
+public class ErrorMessage implements Responsible {
 
     private HttpStatus status;
     private String message;

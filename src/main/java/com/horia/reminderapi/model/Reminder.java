@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "reminders")
-public class Reminder {
+public class Reminder implements Responsible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
