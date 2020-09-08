@@ -1,7 +1,4 @@
-package com.horia.reminderapi.client;
-
-import com.horia.reminderapi.model.Responsible;
-import net.bytebuddy.agent.builder.ResettableClassFileTransformer;
+package com.horia.reminderapi.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

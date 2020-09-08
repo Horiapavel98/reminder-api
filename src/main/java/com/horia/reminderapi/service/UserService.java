@@ -1,6 +1,6 @@
 package com.horia.reminderapi.service;
 
-import com.horia.reminderapi.client.User;
+import com.horia.reminderapi.model.User;
 import com.horia.reminderapi.client.UserDto;
 import com.horia.reminderapi.exceptions.ResourceNotFoundException;
 import com.horia.reminderapi.exceptions.UserAlreadyExistException;
@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @Service
