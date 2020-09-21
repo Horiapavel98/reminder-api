@@ -32,7 +32,7 @@ public class UserService implements IUserService {
 
         user.setEmail(userDto.getEmail());
         user.setName(userDto.getName());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(userDto.getPassword()); // TODO: Hash this man!!!
 
         repository.save(user);
 
