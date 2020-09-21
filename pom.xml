@@ -11,7 +11,7 @@
 
 	<groupId>com.horia</groupId>
 	<artifactId>reminder-api</artifactId>
-	<version>1.6</version>
+	<version>1.7-SNAPSHOT</version>
 	<name>reminder-api</name>
 	<description>Reminder API: Send requests to be reminded on your phone</description>
 
@@ -21,7 +21,7 @@
 		<connection>scm:git:git@github.com:Horiapavel98/reminder-api.git</connection>
 		<developerConnection>scm:git:git@github.com:Horiapavel98/reminder-api.git</developerConnection>
 		<url>https://github.com/Horiapavel98/reminder-api</url>
-		<tag>reminder-api-1.6</tag>
+		<tag>@{project.version}</tag>
 	</scm>
 
 	<distributionManagement>
