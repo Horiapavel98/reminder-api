@@ -30,8 +30,8 @@ CURL command
     --data-raw '{
         "name": "Pick up laundry",
         "description": "Pick up laundry from the nearby laundry shop on Cornwall Rd. SX2 UO23",
-        "dueDate": "2020-08-30T13:29:00.0000+03:00",
-        "receiverPhoneNumber": "+40735211261"
+        "dueDate": <future date in this format> "2020-08-30T13:29:00.0000+03:00",
+        "receiverPhoneNumber": <phone-number>
     }'
 
 #### Get reminder by id
@@ -68,8 +68,8 @@ CURL command (updating reminder with id 2)
     --data-raw '{
         "name": "Pick up laundry (revised)",
         "description": "Pick up laundry from the nearby laundry shop on Cornwall Rd. SX2 UO23 -- Pay with the card.",
-        "dueDate": "2020-08-27T10:27:30.0000+03:00",
-        "receiverPhoneNumber": "+40735211261"
+        "dueDate": <future date in this format> "2020-08-30T13:29:00.0000+03:00",
+        "receiverPhoneNumber": <phone-number>
     }'
     
     
